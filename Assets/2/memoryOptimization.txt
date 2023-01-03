@@ -1,0 +1,8 @@
+Made for Diego Salamanca:
+
+Memory optimization for Jam City Dev Test, part 2; 
+
+To optimize memory use the pull design pattern, to reuse balls from a finite list.
+
+Also, I perform the calculations of my physics system with a fixd time step of 0.02 on fixed update
+
