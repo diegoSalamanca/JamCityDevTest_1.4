@@ -1,5 +1,5 @@
 
-/*Exercise made by Diego Salamanca for Jam City, on January 2 of 2023
+/*Exercise made by Diego Salamanca for Jam City, on January 3 of 2023
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
 
@@ -34,9 +34,18 @@ public class Script3 : MonoBehaviour
     private void SerializeTransform(Transform transform, NetDataWriter dataWriter)
     {
 
-        sbyte px = System.Convert.ToSByte(transform.position.x);
-        sbyte py = System.Convert.ToSByte(transform.position.y);     
-        sbyte rz = System.Convert.ToSByte(transform.eulerAngles.z);   
+        var x = (float) System.Math.Floor(transform.position.x*10);
+        var y = (float) System.Math.Floor(transform.position.y*10);
+
+        float angle = transform.eulerAngles.z;
+        angle = (angle > 180) ? angle - 360 : angle;
+        var z = (float) System.Math.Floor(angle);
+        
+        sbyte px = System.Convert.ToSByte(x);
+
+        sbyte py = System.Convert.ToSByte(y);  
+
+        sbyte rz = System.Convert.ToSByte(z);   
         sbyte[] data = {px,py,rz};
 
         dataWriter.PutSBytesWithLength(data);
@@ -49,9 +58,14 @@ public class Script3 : MonoBehaviour
         Vector3 newPosition = new Vector3(); 
         Vector3 newRotation = new Vector3();   
         var data =   dataReader.GetSBytesWithLength();   
-        newPosition.x = data[0];
-        newPosition.y = data[1];              
-        newRotation.z = data[2];
+
+        float x = data[0]/10f;
+        float y = data[1]/10f;
+        float z = data[2];      
+
+        newPosition.x = x;
+        newPosition.y = y;              
+        newRotation.z = z;
 
         transform.position = newPosition;
         transform.eulerAngles = newRotation;
