@@ -33,21 +33,25 @@ public class Script3 : MonoBehaviour
 
     private void SerializeTransform(Transform transform, NetDataWriter dataWriter)
     {
-        dataWriter.Put(transform.position.x);
-        dataWriter.Put(transform.position.y);
-        dataWriter.Put(transform.eulerAngles.z);
+
+        sbyte px = System.Convert.ToSByte(transform.position.x);
+        sbyte py = System.Convert.ToSByte(transform.position.y);     
+        sbyte rz = System.Convert.ToSByte(transform.eulerAngles.z);   
+        sbyte[] data = {px,py,rz};
+
+        dataWriter.PutSBytesWithLength(data);
+
     }
 
     private void DeserializeTransform(Transform transform, NetDataReader dataReader)
     {
-        Vector3 newPosition = new Vector3();
         
-        newPosition.x = dataReader.GetFloat();
-        newPosition.y = dataReader.GetFloat();
-       
-
-        Vector3 newRotation = new Vector3();       
-        newRotation.z = dataReader.GetFloat();
+        Vector3 newPosition = new Vector3(); 
+        Vector3 newRotation = new Vector3();   
+        var data =   dataReader.GetSBytesWithLength();   
+        newPosition.x = data[0];
+        newPosition.y = data[1];              
+        newRotation.z = data[2];
 
         transform.position = newPosition;
         transform.eulerAngles = newRotation;
