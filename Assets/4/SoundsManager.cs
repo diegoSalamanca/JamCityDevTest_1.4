@@ -1,104 +1,109 @@
 /*Exercise made by Diego Salamanca for Jam City, on January 3 of 2023
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
-using UnityEngine;
 
-public class SoundsManager : MonoBehaviour
+namespace Exercise4
 {
-    [SerializeField]
-    Player player;
-    
-    [SerializeField]
-    AudioSource SFXAudioSource;
+    using UnityEngine;
 
-     [SerializeField]
-    AudioSource StepsAudioSource;
-
-     [SerializeField]
-    AudioSource MusicAudioSource;
-
-    [SerializeField]
-    AudioClip[] stepsSounds;
-
-    [SerializeField]
-    AudioClip[] sfxSounds;
-
-
-
-    void PlayRandomSfxSound()
+    public class SoundsManager : MonoBehaviour
     {
-        var index = (int)Random.Range(0,sfxSounds.Length);
-        SFXAudioSource.PlayOneShot(sfxSounds[index]);
-    }
+        [SerializeField]
+        Player player;
+        
+        [SerializeField]
+        AudioSource SFXAudioSource;
 
-   private void Update() {
+        [SerializeField]
+        AudioSource StepsAudioSource;
 
-    if( Input.GetKeyDown(KeyCode.Space) )
-    {
-        PlayRandomSfxSound();
-    }
+        [SerializeField]
+        AudioSource MusicAudioSource;
+
+        [SerializeField]
+        AudioClip[] stepsSounds;
+
+        [SerializeField]
+        AudioClip[] sfxSounds;
 
 
-    if(player.IsMoving)
-    {
-        switch (player.CurrentFloor)
+
+        void PlayRandomSfxSound()
         {
-            
-            default:
-            StepsAudioSource.clip = stepsSounds[0];
-            
+            var index = (int)Random.Range(0,sfxSounds.Length);
+            SFXAudioSource.PlayOneShot(sfxSounds[index]);
+        }
 
-            break;
+    private void Update() {
 
-            case FloorType.None:
-                StepsAudioSource.clip = stepsSounds[3];
+        if( Input.GetKeyDown(KeyCode.Space) )
+        {
+            PlayRandomSfxSound();
+        }
+
+
+        if(player.IsMoving)
+        {
+            switch (player.CurrentFloor)
+            {
                 
-            break;
-
-             case FloorType.Grass:
+                default:
                 StepsAudioSource.clip = stepsSounds[0];
-            
-            break;
+                
 
-             case FloorType.Metal:
-                StepsAudioSource.clip = stepsSounds[1];
-            
-            break;
+                break;
 
-             case FloorType.Wood:
-                StepsAudioSource.clip = stepsSounds[2];
+                case FloorType.None:
+                    StepsAudioSource.clip = stepsSounds[3];
+                    
+                break;
+
+                case FloorType.Grass:
+                    StepsAudioSource.clip = stepsSounds[0];
+                
+                break;
+
+                case FloorType.Metal:
+                    StepsAudioSource.clip = stepsSounds[1];
+                
+                break;
+
+                case FloorType.Wood:
+                    StepsAudioSource.clip = stepsSounds[2];
+                
+                break;
+            }
             
-            break;
+            if(!StepsAudioSource.isPlaying)
+            StepsAudioSource.Play();
+        }
+        else
+        {
+            StepsAudioSource.Stop();
         }
         
-        if(!StepsAudioSource.isPlaying)
-        StepsAudioSource.Play();
     }
-    else
+
+    public void MusicVolumenSet(float value)
     {
-        StepsAudioSource.Stop();
+        MusicAudioSource.volume = value;
     }
-    
-   }
 
-   public void MusicVolumenSet(float value)
-   {
-      MusicAudioSource.volume = value;
-   }
+    public void SFXVolumenSet(float value)
+    {
+        SFXAudioSource.volume = value;
+    }
 
-   public void SFXVolumenSet(float value)
-   {
-      SFXAudioSource.volume = value;
-   }
+        public void StepVolumenSet(float value)
+    {
+        StepsAudioSource.volume = value;
+    }
 
-    public void StepVolumenSet(float value)
-   {
-      StepsAudioSource.volume = value;
-   }
+    public void MasterVolumenSet(float value)
+    {
+        AudioListener.volume = value;
+    }
 
-   public void MasterVolumenSet(float value)
-   {
-     AudioListener.volume = value;
-   }
-
+    }
 }
+

@@ -3,39 +3,44 @@
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
 
-using UnityEngine;
-
-public class BallsController : MonoBehaviour
+namespace  Exercise2
 {
+    using UnityEngine;
 
-    [SerializeField]
-    BallsPulling ballsPulling;
-    
-
-    public int ballIndex = 0;
-    
-
-    
-    void Update()
+    public class BallsController : MonoBehaviour
     {
-        if(Input.GetMouseButtonDown(0))
+
+        [SerializeField]
+        BallsPulling ballsPulling;
+        
+
+        public int ballIndex = 0;
+        
+
+        
+        void Update()
         {
-            var pos =  Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x,Input.mousePosition.y, 0) );
-            print(pos);
-            PutBall(pos);
+            if(Input.GetMouseButtonDown(0))
+            {
+                var pos =  Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x,Input.mousePosition.y, 0) );
+                
+                PutBall(pos);
+            }
         }
-    }
 
-    void PutBall(Vector3 clickPos )
-    {
-        var ballPhysics = ballsPulling.balls[ballIndex].GetComponent<MyBallPhysics>();
-        ballPhysics.ResetBall();
-        ballPhysics.EnableBall();
-        ballsPulling.balls[ballIndex].transform.position = clickPos;
-        ballIndex++;
-        if(ballIndex>=ballsPulling.balls.Count)
+        void PutBall(Vector3 clickPos )
         {
-            ballIndex = 0;
+            var ballPhysics = ballsPulling.balls[ballIndex].GetComponent<MyBallPhysics>();
+            ballPhysics.ResetBall();
+            ballPhysics.EnableBall();
+            ballsPulling.balls[ballIndex].transform.position = clickPos;
+            ballIndex++;
+            if(ballIndex>=ballsPulling.balls.Count)
+            {
+                ballIndex = 0;
+            }
         }
     }
 }
+
+

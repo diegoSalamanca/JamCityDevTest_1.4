@@ -5,7 +5,11 @@ Phone: +57 3508232690 Bogotá Colombia*/
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiManager : MonoBehaviour
+
+namespace Exersice5
+
+{
+  public class UiManager : MonoBehaviour
 {
 
     [SerializeField]
@@ -67,3 +71,6 @@ public class UiManager : MonoBehaviour
 
    
 }
+
+}
+

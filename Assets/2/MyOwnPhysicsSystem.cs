@@ -2,43 +2,34 @@
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
 
-using UnityEngine;
-
-public class MyOwnPhysicsSystem : MonoBehaviour
+namespace  Exercise2
 {
-    [SerializeField]
-    private float gravity;
 
-    public float Gravity { get => gravity;  }
-    
+    using UnityEngine;
 
-    [SerializeField ,Range(0,100), Header("% decrease force on collision ")]
-    private float forceDecrease;
+    public class MyOwnPhysicsSystem : MonoBehaviour
+    {
+        [SerializeField]
+        private float gravity;
 
-    public float ForceDecrease { get => forceDecrease;  }
-    [SerializeField, Range(-10, 10), Header("X initial Speed")]
-    private int xstartSpeed;
-    public int XstartSpeed { get => xstartSpeed; }
+        public float Gravity { get => gravity;  }
+        
 
-    [SerializeField, Range(-10, 10), Header("Y initial Speed")]
-    private int ystartSpeed;
-    public int YstartSpeed { get => ystartSpeed; }
+        [SerializeField ,Range(0,100), Header("% decrease force on collision ")]
+        private float forceDecrease;
 
-    [SerializeField, Header("set random Speed")]
-    bool randomSpeed;
-    public bool RandomSpeed { get => randomSpeed; set => randomSpeed = value; }
+        public float ForceDecrease { get => forceDecrease;  }
+        [SerializeField, Range(-10, 10), Header("X initial Speed")]
+        private int xstartSpeed;
+        public int XstartSpeed { get => xstartSpeed; }
 
-   
+        [SerializeField, Range(-10, 10), Header("Y initial Speed")]
+        private int ystartSpeed;
+        public int YstartSpeed { get => ystartSpeed; }
 
+        [SerializeField, Header("set random Speed")]
+        bool randomSpeed;
+        public bool RandomSpeed { get => randomSpeed; set => randomSpeed = value; }
 
-
-    
-
-    
-
-
-
-
-
-
+    }
 }

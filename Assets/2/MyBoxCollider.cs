@@ -3,19 +3,23 @@
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
 
-using UnityEngine;
-
-public class MyBoxCollider : MonoBehaviour
+namespace  Exercise2
 {
-   public float height, widht;   
 
-   public enum ColisionAxis
+   using UnityEngine;
+
+   public class MyBoxCollider : MonoBehaviour
    {
-      x,
-      y
+      public float height, widht;   
+
+      public enum ColisionAxis
+      {
+         x,
+         y
+      }
+
+      public ColisionAxis colisionAxis;
+
+      
    }
-
-   public ColisionAxis colisionAxis;
-
-   
 }

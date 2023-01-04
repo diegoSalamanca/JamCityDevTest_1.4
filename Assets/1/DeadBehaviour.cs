@@ -2,58 +2,61 @@
 Email: Diegocolmayor@gmial.com
 Phone: +57 3508232690 Bogotá Colombia*/
 
-
-
-using UnityEngine;
-
-public class DeadBehaviour : MonoBehaviour
+namespace Exercise1
 {
-    private bool alive = true;
+    using UnityEngine;
 
-    [SerializeField]   
-    DeadBehaviourType deadBehaviourType;
-
-    enum DeadBehaviourType
+    public class DeadBehaviour : MonoBehaviour
     {
-        immediate,
-        scaled, 
-        vfx
-    }
+        private bool alive = true;
 
-    public void Dead()
-    {
-        if(!alive)
-         return;
-        
-        
+        [SerializeField]   
+        DeadBehaviourType deadBehaviourType;
 
-        switch(deadBehaviourType)
+        enum DeadBehaviourType
         {
-            default:
-                DestroyNow();
-            break;
-
-            case DeadBehaviourType.immediate:
-                DestroyNow();
-            break;
-
-            case DeadBehaviourType.scaled:
-                transform.localScale = Vector3.one*2;
-                Invoke("DestroyNow",5);
-            break;
-
-            case DeadBehaviourType.vfx:
-                gameObject.AddComponent<ParticleSystem>();
-                Invoke("DestroyNow",5);
-                
-            break;
+            immediate,
+            scaled, 
+            vfx
         }
 
-        alive = false;
-    }
+        public void Dead()
+        {
+            if(!alive)
+            return;
+            
+            
 
-    void DestroyNow()
-    {
-        Destroy(gameObject);
+            switch(deadBehaviourType)
+            {
+                default:
+                    DestroyNow();
+                break;
+
+                case DeadBehaviourType.immediate:
+                    DestroyNow();
+                break;
+
+                case DeadBehaviourType.scaled:
+                    transform.localScale = Vector3.one*2;
+                    Invoke("DestroyNow",5);
+                break;
+
+                case DeadBehaviourType.vfx:
+                    gameObject.AddComponent<ParticleSystem>();
+                    Invoke("DestroyNow",5);
+                    
+                break;
+            }
+
+            alive = false;
+        }
+
+        void DestroyNow()
+        {
+            Destroy(gameObject);
+        }
     }
 }
+
+
