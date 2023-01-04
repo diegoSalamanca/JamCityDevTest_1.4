@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Player : MonoBehaviour
-{
+{      
     [SerializeField] private float Speed = 2;
 
     public bool IsMoving { get; private set; }
