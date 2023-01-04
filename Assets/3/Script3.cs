@@ -1,8 +1,14 @@
+
+/*Exercise made by Diego Salamanca for Jam City, on January 2 of 2023
+Email: Diegocolmayor@gmial.com
+Phone: +57 3508232690 Bogotá Colombia*/
+
 using LiteNetLib.Utils;
 using UnityEngine;
 
 public class Script3 : MonoBehaviour
 {
+    
     [SerializeField] private Transform transformDataToSend;
     [SerializeField] private Transform playerTransform;
 
@@ -29,26 +35,27 @@ public class Script3 : MonoBehaviour
     {
         dataWriter.Put(transform.position.x);
         dataWriter.Put(transform.position.y);
-        dataWriter.Put(transform.position.z);
-
-        dataWriter.Put(transform.eulerAngles.x);
-        dataWriter.Put(transform.eulerAngles.y);
         dataWriter.Put(transform.eulerAngles.z);
     }
 
     private void DeserializeTransform(Transform transform, NetDataReader dataReader)
     {
         Vector3 newPosition = new Vector3();
+        
         newPosition.x = dataReader.GetFloat();
         newPosition.y = dataReader.GetFloat();
-        newPosition.z = dataReader.GetFloat();
+       
 
-        Vector3 newRotation = new Vector3();
-        newRotation.x = dataReader.GetFloat();
-        newRotation.y = dataReader.GetFloat();
+        Vector3 newRotation = new Vector3();       
         newRotation.z = dataReader.GetFloat();
 
         transform.position = newPosition;
         transform.eulerAngles = newRotation;
     }
+    
 }
+
+
+
+
+
